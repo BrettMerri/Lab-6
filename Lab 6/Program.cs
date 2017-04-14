@@ -10,10 +10,16 @@ namespace Lab_6
     {
         static void Main(string[] args)
         {
+            Console.Title = "Pig Latin Translator";
             Console.WriteLine("Welcome to the Pig Latin Translator!\n");
-            string input = GetLetterInput();
-            string[] words = SplitIntoWords(input);
-            PrintPigLatin(words);
+            while (true)
+            {
+                string input = GetLetterInput();
+                string[] words = SplitIntoWords(input);
+                PrintPigLatin(words);
+                if (ContinueApp())
+                    continue;
+            }
         }
         public static string GetLetterInput()
         {
@@ -41,17 +47,37 @@ namespace Lab_6
             char[] vowels = new char[5] { 'a', 'e', 'i', 'o', 'u' };
             for (int i = 0; i < input.Length; i++)
             {
-                if (input[i].IndexOfAny(vowels) == 0) {
+                if (input[i].IndexOfAny(vowels) == 0) { //If the word starts with a vowel
                     Console.Write(input[i] + "way ");
+                }
+                else if (input[i].IndexOfAny(vowels) == -1) //If a word with a "y" vowel like "my" is typed
+                {
+                    Console.Write(input[i] + "ay ");
                 }
                 else
                 {
-                    string starting = input[i].Substring(0, input[i].IndexOfAny(vowels));
-                    string ending = input[i].Substring(input[i].IndexOfAny(vowels));
+                    string starting = input[i].Substring(0, input[i].IndexOfAny(vowels)); //Creates a substring starting at index 0 to the length of the index of the first vowel
+                    string ending = input[i].Substring(input[i].IndexOfAny(vowels)); //Creates a substring at index of the first vowel to the end of the word
                     Console.Write(ending + starting + "ay ");
                 }
             }
-            Console.WriteLine();
+            Console.WriteLine("\n");
+        }
+        public static bool ContinueApp()
+        {
+            while (true)
+            {
+                Console.Write("Translate another line? (y/n): ");
+                string input = Console.ReadLine().ToLower();
+                if (input == "y")
+                    return true;
+                else if (input == "n")
+                    return false;
+                else
+                {
+                    Console.WriteLine("Error: Input not y or n.\n");
+                }
+            }
         }
     }
 }
