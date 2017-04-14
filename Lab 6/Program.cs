@@ -12,13 +12,15 @@ namespace Lab_6
         {
             Console.Title = "Pig Latin Translator";
             Console.WriteLine("Welcome to the Pig Latin Translator!\n");
-            while (true)
+
+            bool loop = true;
+            while (loop)
             {
                 string input = GetLetterInput();
                 string[] words = SplitIntoWords(input);
                 PrintPigLatin(words);
-                if (ContinueApp())
-                    continue;
+                if (!ContinueApp())
+                    loop = false;
             }
         }
         public static string GetLetterInput()
@@ -70,7 +72,10 @@ namespace Lab_6
                 Console.Write("Translate another line? (y/n): ");
                 string input = Console.ReadLine().ToLower();
                 if (input == "y")
+                {
+                    Console.WriteLine();
                     return true;
+                }
                 else if (input == "n")
                     return false;
                 else
