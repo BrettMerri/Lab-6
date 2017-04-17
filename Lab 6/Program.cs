@@ -4,6 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+/*
+ * Brett Merrifield
+ * 04/17/17
+ */
 namespace Lab_6
 {
     class Program
@@ -47,8 +51,9 @@ namespace Lab_6
         }
         public static string[] SplitIntoWords(string input)
         {
-            string[] WordList = input.Split(' ');
-            return WordList;
+            //Splits sentence into words array
+            string[] wordList = input.Split(' ');
+            return wordList;
         }
         public static void PrintPigLatin(string[] input)
         {
