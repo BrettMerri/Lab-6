@@ -25,17 +25,23 @@ namespace Lab_6
         }
         public static string GetLetterInput()
         {
-            while(true)
+            while (true)
             {
                 Console.Write("Enter a line to be translated: ");
-                string input = Console.ReadLine().Trim().ToLower(); //Trims input and converts to all lowercase
-                if (input.All(c => Char.IsLetter(c) || c == ' ') && !string.IsNullOrWhiteSpace(input)) //Validates if input is all letters/spaces and is not empty
+
+                //Trims input and converts to all lowercase
+                string input = Console.ReadLine().Trim().ToLower();
+
+                //Validates if input is all letters/spaces and is not empty
+                if (input.All(c => Char.IsLetter(c) || c == ' ') && !string.IsNullOrWhiteSpace(input)) 
                 {
                     return input;
                 }
                 else
                 {
+                    Console.ForegroundColor = ConsoleColor.Red;
                     Console.WriteLine("Error: Invalid input!\n");
+                    Console.ForegroundColor = ConsoleColor.Gray;
                 }
             }
         }
@@ -49,17 +55,23 @@ namespace Lab_6
             char[] vowels = new char[5] { 'a', 'e', 'i', 'o', 'u' };
             for (int i = 0; i < input.Length; i++)
             {
-                if (input[i].IndexOfAny(vowels) == 0) { //If the word starts with a vowel
+                //If the word starts with a vowel
+                if (input[i].IndexOfAny(vowels) == 0)
+                { 
                     Console.Write(input[i] + "way ");
                 }
-                else if (input[i].IndexOfAny(vowels) == -1) //If a word with a "y" vowel like "my" is typed
+                //If the word does not contain a vowel
+                else if (input[i].IndexOfAny(vowels) == -1) 
                 {
                     Console.Write(input[i] + "ay ");
                 }
                 else
                 {
-                    string starting = input[i].Substring(0, input[i].IndexOfAny(vowels)); //Creates a substring starting at index 0 to the length of the index of the first vowel
-                    string ending = input[i].Substring(input[i].IndexOfAny(vowels)); //Creates a substring at index of the first vowel to the end of the word
+                    //Creates a substring starting at index 0 to the length of the index of the first vowel
+                    string starting = input[i].Substring(0, input[i].IndexOfAny(vowels));
+
+                    //Creates a substring at index of the first vowel to the end of the word
+                    string ending = input[i].Substring(input[i].IndexOfAny(vowels)); 
                     Console.Write(ending + starting + "ay ");
                 }
             }
@@ -77,10 +89,15 @@ namespace Lab_6
                     return true;
                 }
                 else if (input == "n")
+                {
+                    Console.WriteLine("\nByebye!");
                     return false;
+                }
                 else
                 {
+                    Console.ForegroundColor = ConsoleColor.Red;
                     Console.WriteLine("Error: Input not y or n.\n");
+                    Console.ForegroundColor = ConsoleColor.Gray;
                 }
             }
         }
