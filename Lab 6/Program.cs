@@ -58,25 +58,25 @@ namespace Lab_6
         public static void PrintPigLatin(string[] input)
         {
             char[] vowels = new char[5] { 'a', 'e', 'i', 'o', 'u' };
-            for (int i = 0; i < input.Length; i++)
+            foreach (string item in input)
             {
                 //If the word starts with a vowel
-                if (input[i].IndexOfAny(vowels) == 0)
+                if (item.IndexOfAny(vowels) == 0)
                 { 
-                    Console.Write(input[i] + "way ");
+                    Console.Write(item + "way ");
                 }
                 //If the word does not contain a vowel
-                else if (input[i].IndexOfAny(vowels) == -1) 
+                else if (item.IndexOfAny(vowels) == -1) 
                 {
-                    Console.Write(input[i] + "ay ");
+                    Console.Write(item + "ay ");
                 }
                 else
                 {
                     //Creates a substring starting at index 0 to the length of the index of the first vowel
-                    string starting = input[i].Substring(0, input[i].IndexOfAny(vowels));
+                    string starting = item.Substring(0, item.IndexOfAny(vowels));
 
                     //Creates a substring at index of the first vowel to the end of the word
-                    string ending = input[i].Substring(input[i].IndexOfAny(vowels)); 
+                    string ending = item.Substring(item.IndexOfAny(vowels)); 
                     Console.Write(ending + starting + "ay ");
                 }
             }
